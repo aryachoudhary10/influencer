@@ -1,0 +1,119 @@
+/* src/index.css */
+@import "tailwindcss";
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #121212;
+    color: #e5e7eb;
+}
+.card {
+    background-color: #1f1f1f;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #374151;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 25px 50px -12px rgb(251 191 36 / 0.25);
+}
+.btn-primary {
+    background-color: #FBBF24;
+    color: #121212;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px 0 rgba(251, 191, 36, 0.39);
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    background-color: #FCD34D;
+    box-shadow: 0 6px 20px 0 rgba(251, 191, 36, 0.5);
+}
+.btn-primary:disabled {
+    background-color: #9ca3af;
+    color: #1f1f1f;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+.btn-secondary {
+    background-color: #374151;
+    color: #FBBF24;
+    border-radius: 0.75rem;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+    background-color: #4b5563;
+}
+.input-field {
+    background-color: #374151;
+    color: #e5e7eb;
+    border-radius: 0.75rem;
+    border: 1px solid #4b5563;
+    padding: 0.75rem 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.input-field::placeholder {
+    color: #9ca3af;
+}
+.input-field:focus {
+    outline: none;
+    border-color: #FBBF24;
+    box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.2);
+}
+.points-display {
+    color: #FBBF24;
+}
+.nav-button-container {
+    background-color: #1f1f1f;
+    border: 1px solid #374151;
+}
+.nav-button.active {
+    background-color: #FBBF24;
+    color: #121212;
+}
+.toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FBBF24;
+    color: #121212;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    z-index: 50;
+    opacity: 0;
+    transition: opacity 0.5s, transform 0.5s;
+}
+.toast.show {
+    opacity: 1;
+    transform: translate(-50%, -10px);
+}
+.text-gold {
+    color: #FBBF24;
+}
+.lucide {
+    color: #9ca3af;
+}
+.lucide-gold {
+    color: #FBBF24;
+}
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #121212;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

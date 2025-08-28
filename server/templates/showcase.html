@@ -1,0 +1,188 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ influencer.username }}'s Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #e5e7eb;
+            /* Subtle background pattern */
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card {
+            background-color: #1f1f1f;
+            border-radius: 1.5rem;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensures image corners are rounded */
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.2);
+        }
+        .btn-primary {
+            background-color: #FBBF24;
+            color: #121212;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background-color: #FCD34D;
+            transform: scale(1.05);
+        }
+        .text-gold {
+            color: #FBBF24;
+        }
+        .product-image-container {
+            height: 320px; /* Taller image for better visuals */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-16">
+            <h1 class="text-5xl md:text-6xl font-bold text-gray-100 tracking-tight">
+                {{ influencer.username }}'s <span class="text-gold">Curated Products</span>
+            </h1>
+            <p class="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">Products I love and recommend. Click any item to shop directly from the retailer.</p>
+        </header>
+
+        <main>
+            {% if products %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {% for product in products %}
+                <div class="card flex flex-col">
+                    <div class="product-image-container">
+                        <img src="{{ product.imageUrl }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-gray-100 flex-grow mb-4">{{ product.name }}</h3>
+                        <a href="{{ product.affiliateUrl }}" target="_blank" class="btn-primary mt-auto">
+                             <i data-lucide="shopping-bag" class="h-5 w-5 mr-2"></i>
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-center text-gray-500 text-xl">This influencer hasn't added any products yet.</p>
+            {% endif %}
+        </main>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ influencer.username }}'s Showcase</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #e5e7eb;
+            /* Subtle background pattern */
+            background-image: radial-gradient(#2a2a2a 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .card {
+            background-color: #1f1f1f;
+            border-radius: 1.5rem;
+            border: 1px solid #374151;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden; /* Ensures image corners are rounded */
+        }
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.2);
+        }
+        .btn-primary {
+            background-color: #FBBF24;
+            color: #121212;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .btn-primary:hover {
+            background-color: #FCD34D;
+            transform: scale(1.05);
+        }
+        .text-gold {
+            color: #FBBF24;
+        }
+        .product-image-container {
+            height: 320px; /* Taller image for better visuals */
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-16">
+            <!-- NEW: Influencer Profile Section -->
+            <div class="flex flex-col items-center mb-8">
+                <img src="https://placehold.co/128x128/1f1f1f/FBBF24?text={{ influencer.username[0]|upper }}" alt="{{ influencer.username }}" class="w-32 h-32 rounded-full border-4 border-gold mb-4">
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-100 tracking-tight">
+                    @{{ influencer.username }}'s <span class="text-gold">Curated Products</span>
+                </h1>
+            </div>
+            <p class="text-gray-400 mt-4 text-lg max-w-2xl mx-auto">Products I love and recommend. Click any item to shop directly from the retailer.</p>
+        </header>
+
+        <main>
+            {% if products %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                {% for product in products %}
+                <div class="card flex flex-col">
+                    <div class="product-image-container">
+                        <img src="{{ product.imageUrl }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <!-- Content section below the image -->
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="text-lg font-bold text-gray-100 flex-grow mb-4">{{ product.name }}</h3>
+                        <a href="{{ product.affiliateUrl }}" target="_blank" class="btn-primary mt-auto">
+                             <i data-lucide="shopping-bag" class="h-5 w-5 mr-2"></i>
+                            Shop Now
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-center text-gray-500 text-xl">This influencer hasn't added any products yet.</p>
+            {% endif %}
+        </main>
+    </div>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
