@@ -4,3 +4,4 @@ firebase-admin
 bcrypt
 requests
 flask-cors
+python-dotenv
