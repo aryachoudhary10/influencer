@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { AddProductForm, Earnings, TransactionHistory, ProductCard } from './dashboard';
 import { ConfirmationModal, Toast, Button, Icon, Card } from './ui';
 
-const BACKEND_URL = 'http://127.0.0.1:5000';
+import { BACKEND_URL } from '../config';
 
 const DashboardPage = ({ initialUser, onLogout }) => {
     const [user, setUser] = useState(initialUser);

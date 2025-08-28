@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Button, Input, Toast } from './ui';
 
 // --- Configuration ---
-const BACKEND_URL = 'http://127.0.0.1:5000';
+import { BACKEND_URL } from '../config';
 
 // This component handles everything related to user authentication.
 const AuthPage = ({ onLoginSuccess }) => {
