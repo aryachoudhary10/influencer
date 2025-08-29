@@ -344,39 +344,39 @@ def get_transactions(user_id):
         print(f"Get Transactions Error (likely needs index): {e}")
         return jsonify([]), 200
 
-@app.route('/add_points', methods=['POST'])
-def add_points():
-    if not db:
-        return jsonify({"error": "Database not initialized"}), 500
+# @app.route('/add_points', methods=['POST'])
+# def add_points():
+#     if not db:
+#         return jsonify({"error": "Database not initialized"}), 500
     
-    try:
-        data = request.get_json()
-        user_id = data['userId']
-        points_to_add = int(data['points'])
-        reason = data.get('reason', 'Manual Test Credit')
+#     try:
+#         data = request.get_json()
+#         user_id = data['userId']
+#         points_to_add = int(data['points'])
+#         reason = data.get('reason', 'Manual Test Credit')
         
-        transaction_data = {
-            'userId': user_id,
-            'type': 'Earned',
-            'status': 'completed',
-            'points': points_to_add,
-            'product': reason,
-            'createdAt': datetime.datetime.now(tz=datetime.timezone.utc)
-        }
-        db.collection('transactions').add(transaction_data)
+#         transaction_data = {
+#             'userId': user_id,
+#             'type': 'Earned',
+#             'status': 'completed',
+#             'points': points_to_add,
+#             'product': reason,
+#             'createdAt': datetime.datetime.now(tz=datetime.timezone.utc)
+#         }
+#         db.collection('transactions').add(transaction_data)
         
-        user_ref = db.collection('users').document(user_id)
-        user_ref.update({
-            'availablePoints': firestore.Increment(points_to_add)
-        })
+#         user_ref = db.collection('users').document(user_id)
+#         user_ref.update({
+#             'availablePoints': firestore.Increment(points_to_add)
+#         })
         
-        print(f"Added {points_to_add} points to user {user_id} for: {reason}")
+#         print(f"Added {points_to_add} points to user {user_id} for: {reason}")
         
-        return jsonify({"message": f"{points_to_add} points added successfully!"}), 200
+#         return jsonify({"message": f"{points_to_add} points added successfully!"}), 200
         
-    except Exception as e:
-        print(f"Add Points Error: {e}")
-        return jsonify({"error": "An error occurred while adding points."}), 500
+#     except Exception as e:
+#         print(f"Add Points Error: {e}")
+#         return jsonify({"error": "An error occurred while adding points."}), 500
 
 @app.route('/showcase/<username>')
 def showcase(username):
