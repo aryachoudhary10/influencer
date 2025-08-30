@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Add this meta tag to make the mobile browser UI dark -->
+    <meta name="theme-color" content="#121212">
+    <title>Influencer Showcase</title>
+    <style>
+      /* This style block ensures the fallback loader is visible immediately */
+      body {
+        background-color: #121212;
+        margin: 0;
+        font-family: sans-serif;
+      }
+      /* Styles for the fallback loader */
+      .fallback-loader {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #e5e7eb;
+        transition: opacity 0.5s ease-out;
+      }
+      .fallback-loader .dots {
+        display: flex;
+        /* space-x: 2; */
+        margin-bottom: 1.5rem; /* 24px */
+      }
+      .fallback-loader .dot {
+        width: 0.75rem; /* 12px */
+        height: 0.75rem; /* 12px */
+        background-color: #FBBF24; /* yellow-400 */
+        border-radius: 9999px;
+        animation: pulse 1.5s infinite ease-in-out;
+        margin: 0 4px;
+      }
+      .fallback-loader .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .fallback-loader .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .fallback-loader p {
+        font-size: 1.125rem; /* text-lg */
+        font-weight: 500; /* medium */
+        font-style: italic;
+        max-width: 512px; /* max-w-lg */
+        text-align: center;
+      }
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(0.8);
+          opacity: 0.7;
+        }
+        50% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <!-- 
+        This is the HTML fallback loader. It will be displayed instantly 
+        while your React app loads. React will automatically replace 
+        this content once it's ready.
+      -->
+      <div class="fallback-loader">
+        <div class="dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <p>"Style is a way to say who you are without having to speak."</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

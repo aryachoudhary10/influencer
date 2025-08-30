@@ -378,10 +378,39 @@ def get_transactions(user_id):
 #         print(f"Add Points Error: {e}")
 #         return jsonify({"error": "An error occurred while adding points."}), 500
 
+# @app.route('/showcase/<username>')
+# def showcase(username):
+#     if not db:
+#         return "Error: Database not initialized", 500
+    
+#     try:
+#         users_ref = db.collection('users')
+#         user_query = users_ref.where('username', '==', username.lower()).limit(1).get()
+#         user_list = list(user_query)
+        
+#         if not user_list:
+#             return "Showcase not found", 404
+            
+#         user_doc = user_list[0]
+#         user_id = user_doc.id
+#         user_data = user_doc.to_dict()
+        
+#         products_ref = db.collection('products')
+#         product_query = products_ref.where('userId', '==', user_id).order_by('createdAt', direction=firestore.Query.DESCENDING)
+#         results = product_query.get()
+        
+#         products = []
+#         for doc in results:
+#             product_data = doc.to_dict()
+#             products.append(product_data)
+            
+#         return render_template('showcase.html', influencer=user_data, products=products)
+
+# CORRECTED: This is the only showcase route, and it returns JSON data
 @app.route('/showcase/<username>')
-def showcase(username):
+def showcase_data(username):
     if not db:
-        return "Error: Database not initialized", 500
+        return jsonify({"error": "Database not initialized"}), 500
     
     try:
         users_ref = db.collection('users')
@@ -389,11 +418,15 @@ def showcase(username):
         user_list = list(user_query)
         
         if not user_list:
-            return "Showcase not found", 404
+            return jsonify({"error": "Showcase not found"}), 404
             
         user_doc = user_list[0]
         user_id = user_doc.id
         user_data = user_doc.to_dict()
+
+        # Security: Do not send the password hash to the public frontend
+        if 'password' in user_data:
+            del user_data['password']
         
         products_ref = db.collection('products')
         product_query = products_ref.where('userId', '==', user_id).order_by('createdAt', direction=firestore.Query.DESCENDING)
@@ -402,13 +435,20 @@ def showcase(username):
         products = []
         for doc in results:
             product_data = doc.to_dict()
+            product_data['id'] = doc.id
+            if 'createdAt' in product_data and hasattr(product_data['createdAt'], 'isoformat'):
+                   product_data['createdAt'] = product_data['createdAt'].isoformat()
             products.append(product_data)
             
-        return render_template('showcase.html', influencer=user_data, products=products)
+        # CORRECTED: Return JSON data for the React app
+        return jsonify({
+            "influencer": user_data,
+            "products": products
+        })
 
     except Exception as e:
-        print(f"Showcase Error: {e}")
-        return "An error occurred while loading the showcase.", 500
+        print(f"Showcase Data Error: {e}")
+        return jsonify({"error": "An error occurred while loading showcase data."}), 500
 
 
 if __name__ == '__main__':

@@ -125,8 +125,8 @@ const DashboardPage = ({ initialUser, onLogout }) => {
                             <h2 className="text-4xl font-bold text-gray-100">My <span className="text-gold">Curated Products</span></h2>
                             <p className="text-gray-400 mt-2">Products I love and recommend.</p>
                             <p className="text-gray-300 mt-4">Your public showcase link:</p>
-                            <a href={`${BACKEND_URL}/showcase/${user.username}`} target="_blank" rel="noopener noreferrer" className="text-gold font-semibold hover:underline">
-                                {`${BACKEND_URL}/showcase/${user.username}`}
+                            <a href={`/showcase/${user.username}`} target="_blank" rel="noopener noreferrer" className="text-gold font-semibold hover:underline">
+                                {`${window.location.origin}/showcase/${user.username}`}
                             </a>
                         </div>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
